@@ -4,5 +4,5 @@ class FirestorePath {
   // Todoコレクション
   static const String todosDomain = 'todos';
   // Todoに対するサブコレクションの設定
-  // static String chatRoomPath(String todoId) => '$todosDomain/$todoId';
+  static String todoDocPath(String documentId) => '$todosDomain/$documentId';
 }
