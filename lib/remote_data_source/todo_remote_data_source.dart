@@ -6,31 +6,31 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../firebase/firestore_path.dart';
 import '../firebase/firestore_service.dart';
 
-final contentRemoteDataSourceProvider = Provider<ContentRemoteDataSource>(
-  (ref) => ContentRemoteDataSource._(
+final todoRemoteDataSourceProvider = Provider<TodoRemoteDataSource>(
+  (ref) => TodoRemoteDataSource._(
     ref.watch(cloudFirestoreServiceProvider),
   ),
 );
 
-class ContentRemoteDataSource {
-  ContentRemoteDataSource._(
+class TodoRemoteDataSource {
+  TodoRemoteDataSource._(
     this._cloudFirestoreService,
   );
   final CloudFirestoreService _cloudFirestoreService;
 
-  Future<void> addContentData(Map<String, dynamic> data) async {
+  Future<void> addTodoData(Map<String, dynamic> data) async {
     final todoId = data['todoId'];
     final path = FirestorePath.todoDocPath(todoId);
     await _cloudFirestoreService.setData(path: path, data: data);
   }
 
-  Future<void> setContentData(Map<String, dynamic> data) async {
+  Future<void> setTodoData(Map<String, dynamic> data) async {
     final todoId = data['todoId'];
     final path = FirestorePath.todoDocPath(todoId);
     await _cloudFirestoreService.setData(path: path, data: data, merge: true);
   }
 
-  Future<void> deleteContent(Map<String, dynamic> data) async {
+  Future<void> deleteTodo(Map<String, dynamic> data) async {
     final todoId = data['todoId'];
     final path = FirestorePath.todoDocPath(todoId);
     await _cloudFirestoreService.deleteData(path: path);

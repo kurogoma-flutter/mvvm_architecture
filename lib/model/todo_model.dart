@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TODO {
+class TodoModel {
   final String todoId; // documentIdと一致
   final String title; // todoタイトル
   final int todoLevel; // todoの緊急度
@@ -10,7 +10,7 @@ class TODO {
 
 //<editor-fold desc="Data Methods">
 
-  const TODO({
+  const TodoModel({
     required this.todoId,
     required this.title,
     required this.todoLevel,
@@ -22,7 +22,7 @@ class TODO {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is TODO &&
+      (other is TodoModel &&
           runtimeType == other.runtimeType &&
           todoId == other.todoId &&
           title == other.title &&
@@ -42,7 +42,7 @@ class TODO {
 
   @override
   String toString() {
-    return 'TODO{' +
+    return 'TodoModel{' +
         ' todoId: $todoId,' +
         ' title: $title,' +
         ' todoLevel: $todoLevel,' +
@@ -52,7 +52,7 @@ class TODO {
         '}';
   }
 
-  TODO copyWith({
+  TodoModel copyWith({
     String? todoId,
     String? title,
     int? todoLevel,
@@ -60,7 +60,7 @@ class TODO {
     String? uid,
     Timestamp? updatedAt,
   }) {
-    return TODO(
+    return TodoModel(
       todoId: todoId ?? this.todoId,
       title: title ?? this.title,
       todoLevel: todoLevel ?? this.todoLevel,
@@ -81,8 +81,8 @@ class TODO {
     };
   }
 
-  factory TODO.fromMap(Map<String, dynamic> map) {
-    return TODO(
+  factory TodoModel.fromMap(Map<String, dynamic> map) {
+    return TodoModel(
       todoId: map['todoId'] as String,
       title: map['title'] as String,
       todoLevel: map['todoLevel'] as int,
