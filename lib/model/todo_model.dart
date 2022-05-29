@@ -1,81 +1,94 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TODO {
-  final String title;
-  final int todoLevel;
-  final List<String> todoList;
-  final String uid;
-  final Timestamp createdAt;
+class TodoModel {
+  final String todoId; // documentIdと一致
+  final String title; // todoタイトル
+  final int todoLevel; // todoの緊急度
+  final List<String> todoList; // todo一覧
+  final String uid; // UID
+  final Timestamp updatedAt; // 登録日時
 
 //<editor-fold desc="Data Methods">
 
-  const TODO({
+  const TodoModel({
+    required this.todoId,
     required this.title,
     required this.todoLevel,
     required this.todoList,
     required this.uid,
-    required this.createdAt,
+    required this.updatedAt,
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is TODO &&
+      (other is TodoModel &&
           runtimeType == other.runtimeType &&
+          todoId == other.todoId &&
           title == other.title &&
           todoLevel == other.todoLevel &&
           todoList == other.todoList &&
           uid == other.uid &&
-          createdAt == other.createdAt);
+          updatedAt == other.updatedAt);
 
   @override
   int get hashCode =>
-      title.hashCode ^ todoLevel.hashCode ^ todoList.hashCode ^ uid.hashCode ^ createdAt.hashCode;
+      title.hashCode ^
+      todoId.hashCode ^
+      todoLevel.hashCode ^
+      todoList.hashCode ^
+      uid.hashCode ^
+      updatedAt.hashCode;
 
   @override
   String toString() {
-    return 'TODO{' +
+    return 'TodoModel{' +
+        ' todoId: $todoId,' +
         ' title: $title,' +
         ' todoLevel: $todoLevel,' +
         ' todoList: $todoList,' +
         ' uid: $uid,' +
-        ' createdAt: $createdAt,' +
+        ' updatedAt: $updatedAt,' +
         '}';
   }
 
-  TODO copyWith({
+  TodoModel copyWith({
+    String? todoId,
     String? title,
     int? todoLevel,
     List<String>? todoList,
     String? uid,
-    Timestamp? createdAt,
+    Timestamp? updatedAt,
   }) {
-    return TODO(
+    return TodoModel(
+      todoId: todoId ?? this.todoId,
       title: title ?? this.title,
       todoLevel: todoLevel ?? this.todoLevel,
       todoList: todoList ?? this.todoList,
       uid: uid ?? this.uid,
-      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'todoId': todoId,
       'title': title,
       'todoLevel': todoLevel,
       'todoList': todoList,
       'uid': uid,
-      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
-  factory TODO.fromMap(Map<String, dynamic> map) {
-    return TODO(
+  factory TodoModel.fromMap(Map<String, dynamic> map) {
+    return TodoModel(
+      todoId: map['todoId'] as String,
       title: map['title'] as String,
       todoLevel: map['todoLevel'] as int,
       todoList: map['todoList'] as List<String>,
       uid: map['uid'] as String,
-      createdAt: map['createdAt'] as Timestamp,
+      updatedAt: map['updatedAt'] as Timestamp,
     );
   }
 
