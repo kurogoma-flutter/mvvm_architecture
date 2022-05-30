@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TodoModel {
-  final String todoId; // documentIdと一致
-  final String title; // todoタイトル
-  final int todoLevel; // todoの緊急度
-  final List<String> todoList; // todo一覧
-  final String uid; // UID
-  final Timestamp updatedAt; // 登録日時
+  String todoId; // documentIdと一致
+  String title; // todoタイトル
+  int todoLevel; // todoの緊急度
+  List<String> todoList; // todo一覧
+  String uid; // UID
+  Timestamp updatedAt; // 登録日時
 
 //<editor-fold desc="Data Methods">
 
-  const TodoModel({
+  TodoModel({
     required this.todoId,
     required this.title,
     required this.todoLevel,
@@ -91,6 +91,15 @@ class TodoModel {
       updatedAt: map['updatedAt'] as Timestamp,
     );
   }
+
+  factory TodoModel.initialData() => TodoModel(
+        todoId: '',
+        title: '',
+        todoLevel: 1,
+        todoList: [],
+        uid: '',
+        updatedAt: Timestamp.now(),
+      );
 
 //</editor-fold>
 }
