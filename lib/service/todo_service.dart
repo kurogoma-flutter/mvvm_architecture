@@ -29,14 +29,17 @@ class TodoService {
   // モデルの枠組みにデータを入れるイメージ
   // ここをステート管理していく
   Future<void> addTodoData({
-    required TodoModel todoModel,
+    required String title,
+    required int todoLevel,
+    required List<String> todoList,
+    required String uid,
   }) async {
-    todoModel.todoId = uuid.v4();
-    todoModel.title = '';
-    todoModel.todoLevel = 2;
-    todoModel.todoList = ['ご飯食べる', 'ランニングする'];
-    todoModel.uid = 'XXX';
-    await todoRepository.addTodoData(todoModel);
+    todoData.todoId = uuid.v4();
+    todoData.title = title;
+    todoData.todoLevel = todoLevel;
+    todoData.todoList = todoList;
+    todoData.uid = uid;
+    await todoRepository.addTodoData(todoData);
   }
 
   Query<TodoModel> todosQuery(String todoId) =>
