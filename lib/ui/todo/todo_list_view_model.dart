@@ -9,16 +9,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_architecture_learn/model/todo_model.dart';
 import 'package:mvvm_architecture_learn/service/todo_service.dart';
 
-final todoPageViewModelProvider = ChangeNotifierProvider<todoPageViewModel>(
+final todoPageViewModelProvider = ChangeNotifierProvider<TodoPageViewModel>(
   (ref) {
-    return todoPageViewModel(
+    return TodoPageViewModel(
       ref.watch(todoServiceProvider),
     );
   },
 );
 
-class todoPageViewModel extends ChangeNotifier {
-  todoPageViewModel(
+class TodoPageViewModel extends ChangeNotifier {
+  TodoPageViewModel(
     this.todoService,
   );
 
@@ -30,6 +30,10 @@ class todoPageViewModel extends ChangeNotifier {
   List<String> todoList = [];
   // ignore: todo
   String uid = 'XXXXXX'; // TODO: 認証機能追加後修正
+  final TextEditingController _titleTextEditingController =
+      TextEditingController();
+  final TextEditingController _todoItemTextEditingController =
+      TextEditingController();
 
   void handleTitleText(e) {
     title = e;
@@ -53,13 +57,15 @@ class todoPageViewModel extends ChangeNotifier {
       todoList: todoList,
       uid: uid,
     );
+    clearForm();
   }
 
-  void clearForm(TextEditingController controller) {
+  void clearForm() {
     title = '';
     todoLevel = 0;
     todoList = [];
-    controller.clear();
+    _titleTextEditingController.clear();
+    _todoItemTextEditingController.clear();
     notifyListeners();
   }
 }
