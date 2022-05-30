@@ -6,13 +6,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../model/todo_model.dart';
 import '../remote_data_source/todo_remote_data_source.dart';
 
-final todoRepositoryProvider =
-    Provider((ref) => TodoRepository._(ref.watch(todoRemoteDataSourceProvider)));
+final todoRepositoryProvider = Provider(
+    (ref) => TodoRepository._(ref.watch(todoRemoteDataSourceProvider)));
 
 class TodoRepository {
   TodoRepository._(this._todoRemoteDataSource);
 
   final TodoRemoteDataSource _todoRemoteDataSource;
+
+  Future<List<TodoModel>> fetchTodoList(String s) async =>
+      await _todoRemoteDataSource.fetchTodoList('XXX');
 
   Future<void> addTodoData(TodoModel todoModel) async {
     await _todoRemoteDataSource.addTodoData(todoModel.toMap());
@@ -26,8 +29,8 @@ class TodoRepository {
     await _todoRemoteDataSource.deleteTodo(todoModel.toMap());
   }
 
-  Query<TodoModel> todosQuery(String spaceId) =>
-      _todoRemoteDataSource.todosQuery(spaceId).withConverter(
+  Query<TodoModel> todosQuery(String todoId) =>
+      _todoRemoteDataSource.todosQuery(todoId).withConverter(
             fromFirestore: (snapshot, _) => TodoModel.fromMap(snapshot.data()!),
             toFirestore: (messageV1Model, _) => messageV1Model.toMap(),
           );
