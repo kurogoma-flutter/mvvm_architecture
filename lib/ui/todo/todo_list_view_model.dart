@@ -68,4 +68,26 @@ class TodoPageViewModel extends ChangeNotifier {
     _todoItemTextEditingController.clear();
     notifyListeners();
   }
+
+  /// ------ test ------
+  int count = 0;
+  void addCounter() {
+    count++;
+    notifyListeners();
+  }
+
+  void subCounter() {
+    count--;
+    notifyListeners();
+  }
+
+  void addTodoLevel() {
+    todoLevel++;
+    notifyListeners();
+  }
+
+  void subTodoLevel() {
+    todoLevel--;
+    notifyListeners();
+  }
 }
