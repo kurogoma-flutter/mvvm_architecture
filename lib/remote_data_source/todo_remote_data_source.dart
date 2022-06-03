@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_architecture_learn/model/todo_model.dart';
 
 // 🌎 Project imports:
-import '../firebase/firestore_path.dart';
-import '../firebase/firestore_service.dart';
+import '../firebase/cloud_firestore/firestore_path.dart';
+import '../firebase/cloud_firestore/firestore_service.dart';
 
 final todoRemoteDataSourceProvider = Provider<TodoRemoteDataSource>(
   (ref) => TodoRemoteDataSource._(
