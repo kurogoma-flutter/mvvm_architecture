@@ -117,10 +117,7 @@ PODS:
     - FirebaseFirestore/AutodetectLeveldb (= 8.15.0)
   - FirebaseFirestore/AutodetectLeveldb (8.15.0):
     - FirebaseFirestore/Base
-    - FirebaseFirestore/WithLeveldb
   - FirebaseFirestore/Base (8.15.0)
-  - FirebaseFirestore/WithLeveldb (8.15.0):
-    - FirebaseFirestore/Base
   - FirebaseInstallations (8.15.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -325,7 +322,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 92e07a649aeb66352b319d43bdd2ee3942af84cb
   FirebaseDatabase: f567afd233e54a303d84423207736590a6feb419
   FirebaseDynamicLinks: 1dc816ef789c5adac6fede0b46d11478175c70e4
-  FirebaseFirestore: cb361b7f8f225a225c9f11b8d42066baebb1630c
+  FirebaseFirestore: d507e1b941325b62da73e8ca9cf4c261eec24ef1
   FirebaseInstallations: 40bd9054049b2eae9a2c38ef1c3dd213df3605cd
   FirebaseMessaging: 5e5118a2383b3531e730d974680954c679ca0a13
   FirebaseStorage: 8019af461599b2c3bc61c6a5dbdfa3d2de66a4d9
