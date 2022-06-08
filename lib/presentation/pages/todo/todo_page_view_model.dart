@@ -2,11 +2,9 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // 🌎 Project imports:
-import 'package:mvvm_architecture_learn/model/todo_model.dart';
 import 'package:mvvm_architecture_learn/service/todo_service.dart';
 
 final todoPageViewModelProvider = ChangeNotifierProvider<TodoPageViewModel>(
